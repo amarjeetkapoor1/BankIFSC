@@ -1,3 +1,4 @@
 export const environment = {
-  production: true
+  production: true,
+  url: 'https://api.techm.co.in/api/v1/ifsc/'
 };
