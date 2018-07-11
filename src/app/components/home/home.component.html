@@ -4,33 +4,10 @@
       </div>
   <div class="form-group">
     <label for="pwd">IFSC:</label>
-    <input type="text" [(ngModel)]="ifscCode" name="ifsc" pattern='^[A-Za-z]{4}\d{7}$' #ifscInput="ngModel" (input)="dt.filterGlobal($event.target.value, 'contains')"
-      class="form-control" required/>
-    <p *ngIf="ifscInput.invalid && (ifscInput.dirty || ifscInput.touched)">
-      IFSC Code invalid
-    </p>
+    <input type="text" [(ngModel)]="ifscCode" name="ifsc" pattern='^[A-Za-z]{4}\d{7}$' #ifscInput="ngModel" class="form-control" required />
+    <span *ngIf="ifscInput.invalid && (ifscInput.dirty || ifscInput.touched)">IFSC Code invalid</span>
   </div>
-  <button class="btn btn-info" type='submit' (click)="getBankInfo() " [disabled]="ifscInput.invalid && (ifscInput.dirty || ifscInput.touched)">Submit
+  <button class="btn btn-info" type='submit' (click)="getBankInfo() " [disabled]="ifscInput.invalid && (ifscInput.dirty || ifscInput.touched)" >Submit
   </button>
-  <div class="row">
-      <h3>Banks Info</h3>
-      <p-table #dt [columns]="cols" [value]="bankInfo" (onFilter)="filter($event)">
-        <ng-template pTemplate="header" let-columns>
-          <tr style="word-wrap: break-word;">
-            <th [width]="col.width" *ngFor="let col of columns" [pSortableColumn]="col.field">
-              {{col.header}}
-              <p-sortIcon [field]="col.field"></p-sortIcon>
-            </th>
-          </tr>
-        </ng-template>
-        <ng-template pTemplate="body" let-rowData let-columns="columns">
-          <tr style="word-wrap: break-word;">
-            <td *ngFor="let col of columns">
-              {{rowData[col.field]}}
-            </td>
-          </tr>
-        </ng-template>
-      </p-table>
-  </div>
 
-</div>
+<app-bank-info [bankInfo]='bankInfo'></app-bank-info>

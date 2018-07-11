@@ -1,21 +1,32 @@
-<p>
-  bank-info works!
-</p>
-
-<h3>Dynamic Columns</h3>
-<p-table [columns]="cols" [value]="cars">
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns">
+<div class="container-fluid">
+  <h3 class="row">Banks Info</h3>
+  <div class="row">
+      <div class="col-md-4">
+          <div class="form-group">
+              <label for="pwd">Filter:</label>
+          <input type="text" name="ifsc" (input)="dt.filterGlobal($event.target.value, 'contains')" 
+          class="form-control"/>
+      </div>
+      </div>
+  </div>
+  <div class="row">
+      <p-table #dt [columns]="cols" [value]="bankInfo" (onFilter)="filter($event)">
+          <ng-template pTemplate="header" let-columns>
+            <tr style="word-wrap: break-word;">
+              <th [width]="col.width" *ngFor="let col of columns" [pSortableColumn]="col.field">
                 {{col.header}}
-            </th>
-        </tr>
-    </ng-template>
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns">
-                    {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
+                <p-sortIcon [field]="col.field"></p-sortIcon>
+              </th>
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-rowData let-columns="columns">
+            <tr style="word-wrap: break-word;">
+              <td *ngFor="let col of columns">
+                {{rowData[col.field]}}
+              </td>
+            </tr>
+          </ng-template>
+        </p-table>
+        <div *ngIf="this.message !==''">{{this.message}}</div>
+  </div>
+</div>
