@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { IFSCCodeService } from './ifsccode.service';
+import { IfscCodeService } from './ifsccode.service';
 
 describe('IFSCCodeService', () => {
-  beforeEach(() => {
-    TestBed.configureTestingModule({
-      providers: [IFSCCodeService]
+    beforeEach(() => {
+        TestBed.configureTestingModule({
+            providers: [IfscCodeService]
+        });
     });
-  });
 
-  it('should be created', inject([IFSCCodeService], (service: IFSCCodeService) => {
-    expect(service).toBeTruthy();
-  }));
+    it('should be created', inject([IfscCodeService], (service: IfscCodeService) => {
+        expect(service).toBeTruthy();
+    }));
 });

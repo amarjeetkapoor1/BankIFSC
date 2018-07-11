@@ -8,11 +8,7 @@ import { AppComponent } from './app.component';
 import { IfscCodeService } from 'src/app/shared/services/ifsccode.service';
 import { HomeComponent } from './components/home/home.component';
 import { BankInfoComponent } from './components/bank-info/bank-info.component';
-
-
-export function startupServiceFactory(ifscCodeService: IfscCodeService): Function {
-  return () => ifscCodeService.load();
-}
+import { BanksData } from './shared/model/banks-data.model';
 
 @NgModule({
   declarations: [
@@ -27,13 +23,7 @@ export function startupServiceFactory(ifscCodeService: IfscCodeService): Functio
     HttpClientModule
   ],
 
-  providers: [IfscCodeService,
-    {
-      provide: APP_INITIALIZER,
-      useFactory: startupServiceFactory,
-      deps: [IfscCodeService],
-      multi: true
-  }],
+  providers: [IfscCodeService, BanksData],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

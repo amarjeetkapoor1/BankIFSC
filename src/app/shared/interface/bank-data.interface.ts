@@ -8,5 +8,5 @@ export interface BankData {
     IFSC: string;
     MICRCODE: string;
     STATE: string;
-    id: string;
+    _id: string;
 }
