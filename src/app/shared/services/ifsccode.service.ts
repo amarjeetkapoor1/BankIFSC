@@ -5,7 +5,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { BankData } from '../interface/bank-data.interface';
 import { BanksData } from 'src/app/shared/model/banks-data.model';
-import { SUCCESS } from 'src/app/shared/app.constants';
+import { SUCCESS, SERVERERROR } from 'src/app/shared/app.constants';
 
 @Injectable({
     providedIn: 'root'
@@ -31,7 +31,7 @@ export class IfscCodeService {
                         }
                     },
                     err => {
-                        return 'Server Error due to' + err.code;
+                        return SERVERERROR + err.code;
                     }
                 )
             );
