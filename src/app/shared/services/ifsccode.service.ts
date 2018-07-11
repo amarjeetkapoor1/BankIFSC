@@ -5,6 +5,7 @@ import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { BankData } from '../interface/bank-data.interface';
 import { BanksData } from 'src/app/shared/model/banks-data.model';
+import { SUCCESS } from 'src/app/shared/app.constants';
 
 @Injectable({
     providedIn: 'root'
@@ -26,7 +27,7 @@ export class IfscCodeService {
                             throw info.message;
                         } else {
                             this.banksData.update(info.data);
-                            return info.status;
+                            return SUCCESS;
                         }
                     },
                     err => {

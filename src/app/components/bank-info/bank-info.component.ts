@@ -10,7 +10,7 @@ import { NORECORD } from 'src/app/shared/app.constants';
 export class BankInfoComponent implements OnInit {
 
     @Input('bankInfo') bankInfo: BankData[];
-    
+
     cols: { field: string; header: string; width: string; }[];
     message: string;
     constructor() {

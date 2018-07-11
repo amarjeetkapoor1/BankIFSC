@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { IfscCodeService } from '../../shared/services/ifsccode.service';
 import { BankData } from '../../shared/interface/bank-data.interface';
-import { DATAEXIT } from 'src/app/shared/app.constants';
+import { DATAEXIT, SERVERERROR } from 'src/app/shared/app.constants';
 
 @Component({
     selector: 'app-home',
@@ -38,12 +38,17 @@ export class HomeComponent implements OnInit {
                     this.error = false;
                 },
                 error => {
-                    this.message = error;
+                    if ( typeof error === 'string') {
+                        this.message = error;
+                    } else {
+                        this.message = SERVERERROR;
+                    }
                     this.error = true;
                 }
             );
         } else {
             this.message = DATAEXIT;
+            this.ifscCode = '';
         }
     }
 
