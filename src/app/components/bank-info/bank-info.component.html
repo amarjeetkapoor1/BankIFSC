@@ -4,7 +4,7 @@
       <div class="col-md-4">
           <div class="form-group">
               <label for="pwd">Filter:</label>
-          <input type="text" name="ifsc" (input)="dt.filterGlobal($event.target.value, 'contains')" 
+          <input type="text" name="ifsc" (input)="dt.filterGlobal($event.target.value, 'contains')"  [(ngModel)]="_filter"
           class="form-control"/>
       </div>
       </div>

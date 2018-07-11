@@ -5,9 +5,9 @@
   <div class="form-group">
     <label for="pwd">IFSC:</label>
     <input type="text" [(ngModel)]="ifscCode" name="ifsc" pattern='^[A-Za-z]{4}\d{7}$' #ifscInput="ngModel" class="form-control" [required]=true/>
-    <span *ngIf="ifscInput.invalid && (ifscInput.dirty || ifscInput.touched)">IFSC Code invalid</span>
+    <span *ngIf="ifscInput.invalid && ifscInput.errors.pattern && (ifscInput.dirty || ifscInput.touched)">IFSC Code invalid</span>
   </div>
   <button class="btn btn-info" type='submit' (click)="getBankInfo() && ifscInput.reset()" [disabled]="ifscInput.invalid" >Submit
   </button>
 
-<app-bank-info [bankInfo]='bankInfo'></app-bank-info>
+<app-bank-info [bankInfo]='bankInfo' [filterData]='filterData'></app-bank-info>

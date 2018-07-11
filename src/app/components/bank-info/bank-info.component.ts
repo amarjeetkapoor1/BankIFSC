@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, ViewChild } from '@angular/core';
 import { BankData } from 'src/app/shared/interface/bank-data.interface';
 import { NORECORD } from 'src/app/shared/app.constants';
+import { Table } from 'primeng/table';
 
 @Component({
     selector: 'app-bank-info',
@@ -9,7 +10,18 @@ import { NORECORD } from 'src/app/shared/app.constants';
 })
 export class BankInfoComponent implements OnInit {
 
+    _filter: string;
+    @ViewChild('dt') td: Table;
     @Input('bankInfo') bankInfo: BankData[];
+    @Input('filterData') get filterData(): string {
+        return this._filter ;
+    }
+    set filterData(data: string) {
+        this._filter = data;
+        if (this.td !== undefined) {
+            this.td.filter(this._filter, 'IFSC', 'contains');
+        }
+    }
 
     cols: { field: string; header: string; width: string; }[];
     message: string;

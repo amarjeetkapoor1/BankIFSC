@@ -14,11 +14,13 @@ export class HomeComponent implements OnInit {
     bankInfo: BankData[];
     message: string;
     error: boolean;
+    filterData: string;
 
     constructor(private ifscCodeService: IfscCodeService) {
         this.ifscCode = '';
         this.message = '';
         this.error = false;
+        this.filterData = '';
     }
 
     ngOnInit() {
@@ -33,6 +35,7 @@ export class HomeComponent implements OnInit {
         if (this.getFromAPI()) {
             this.ifscCodeService.update(this.ifscCode).subscribe(
                 (msg) => {
+                    this.filterData = this.ifscCode;
                     this.ifscCode = '';
                     this.message = msg;
                     this.error = false;
@@ -47,6 +50,7 @@ export class HomeComponent implements OnInit {
                 }
             );
         } else {
+            this.filterData = this.ifscCode;
             this.message = DATAEXIT;
             this.ifscCode = '';
         }
