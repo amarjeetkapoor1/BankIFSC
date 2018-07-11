@@ -19,7 +19,7 @@ export class BankInfoComponent implements OnInit {
     set filterData(data: string) {
         this._filter = data;
         if (this.td !== undefined) {
-            this.td.filter(this._filter, 'IFSC', 'contains');
+            this.td.filterGlobal(this._filter, 'contains');
         }
     }
 
@@ -27,6 +27,7 @@ export class BankInfoComponent implements OnInit {
     message: string;
     constructor() {
         this.message = '';
+        this._filter = '';
     }
 
     ngOnInit() {
